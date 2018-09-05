@@ -8,21 +8,24 @@ import { recommendedOperations } from './RecommendedFilms/duck';
 class MovieContainer extends Component {
   componentDidMount() {
     const {
-      match: { params }
+      match: { params },
+      fetchMovie,
+      fetchRecommendedMovies
     } = this.props;
 
-    this.props.fetchMovie(params.id);
-    this.props.fetchRecommendedMovies(params.id);
+    fetchMovie(params.id);
+    fetchRecommendedMovies(params.id);
   }
 
   render() {
-    if (this.props.isLoading) {
+    const { isLoading, movie } = this.props;
+    if (isLoading) {
       return <p>Loading...</p>;
     }
 
     return (
       <React.Fragment>
-        <MovieComponent movie={this.props.movie} />
+        <MovieComponent movie={movie} />
       </React.Fragment>
     );
   }

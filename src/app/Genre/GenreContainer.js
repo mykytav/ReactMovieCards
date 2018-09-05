@@ -7,20 +7,22 @@ import { genreOperations } from './duck';
 class GenreContainer extends Component {
   componentDidMount() {
     const {
-      match: { params }
+      match: { params },
+      fetchGenreMovies
     } = this.props;
 
-    this.props.fetchGenreMovies(params.genre);
+    fetchGenreMovies(params.genre);
   }
 
   render() {
-    if (this.props.isLoading) {
+    const { isLoading, movies } = this.props;
+    if (isLoading) {
       return <p>Loading...</p>;
     }
 
     return (
       <React.Fragment>
-        <GenreComponent movies={this.props.movies} />
+        <GenreComponent movies={movies} />
       </React.Fragment>
     );
   }

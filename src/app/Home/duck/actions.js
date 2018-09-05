@@ -1,8 +1,8 @@
 import types from './types';
 
-// const fetchPopularMoviesRequest = () => ({
-//   type: types.FETCH_POPULAR_MOVIES_REQUEST
-// });
+const fetchPopularMoviesRequest = () => ({
+  type: types.FETCH_POPULAR_MOVIES_REQUEST
+});
 
 const fetchPopularMoviesSuccess = (json, totalPages) => ({
   type: types.FETCH_POPULAR_MOVIES_SUCCESS,
@@ -15,9 +15,9 @@ const fetchPopularMoviesFailure = error => ({
   payload: error
 });
 
-// const fetchSearchMoviesRequest = () => ({
-//   type: types.FETCH_SEARCH_MOVIES_REQUEST
-// });
+const fetchSearchMoviesRequest = () => ({
+  type: types.FETCH_SEARCH_MOVIES_REQUEST
+});
 
 const fetchSearchMoviesSuccess = (json, totalPages) => ({
   type: types.FETCH_SEARCH_MOVIES_SUCCESS,
@@ -30,28 +30,11 @@ const fetchSearchMoviesFailure = error => ({
   payload: error
 });
 
-// const clearPopularMovies = () => ({
-//   type: types.CLEAR_POPULAR_MOVIES
-// });
-
-// const addPage = page => ({
-//   type: types.ADD_PAGE,
-//   payload: page
-// });
-
-// const substractPage = page => ({
-//   type: types.SUBSTRACT_PAGE,
-//   payload: page
-// });
-
 export default {
-  // fetchPopularMoviesRequest,
+  fetchPopularMoviesRequest,
   fetchPopularMoviesSuccess,
   fetchPopularMoviesFailure,
-  // fetchSearchMoviesRequest,
+  fetchSearchMoviesRequest,
   fetchSearchMoviesSuccess,
   fetchSearchMoviesFailure
-  // clearPopularMovies,
-  // addPage,
-  // substractPage
 };

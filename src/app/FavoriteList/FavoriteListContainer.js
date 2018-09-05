@@ -6,17 +6,21 @@ import { movieCardOperations } from '../reusableComponents/MovieCard/duck';
 
 class FavoriteListContainer extends Component {
   componentDidMount() {
-    this.props.fetchFavoriteMovies(this.props.favoriteMovies);
+    const { fetchFavoriteMovies, favoriteMovies } = this.props;
+
+    fetchFavoriteMovies(favoriteMovies);
   }
 
   render() {
-    if (this.props.isLoading) {
+    const { isLoading, favoriteMovies } = this.props;
+
+    if (isLoading) {
       return <p>Loading...</p>;
     }
 
     return (
       <React.Fragment>
-        <FavoriteListComponent favoriteMovies={this.props.favoriteMovies} />
+        <FavoriteListComponent favoriteMovies={favoriteMovies} />
       </React.Fragment>
     );
   }

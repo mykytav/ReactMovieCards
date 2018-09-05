@@ -5,7 +5,7 @@ import MovieCardContainer from '../reusableComponents/MovieCard/MovieCardContain
 const GenreComponent = ({ movies }) => (
   <div className="genre main">
     {movies.map(movie => (
-      <MovieCardContainer key={movie.id} movie={movie} />
+      <MovieCardContainer key={movie.id} movieInfo={movie} />
     ))}
   </div>
 );

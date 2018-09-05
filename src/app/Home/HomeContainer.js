@@ -7,18 +7,19 @@ import PaginationButtonContainer from '../reusableComponents/Header/PaginationBu
 
 class HomeContainer extends Component {
   componentDidMount() {
-    console.log(this.props.page);
-    !this.props.query && this.props.fetchPopularMovies(this.props.page);
+    const { query, fetchPopularMovies } = this.props;
+    !query && fetchPopularMovies();
   }
 
   render() {
-    if (this.props.isLoading) {
+    const { isLoading, movies } = this.props;
+    if (isLoading) {
       return <p>Loading...</p>;
     }
 
     return (
       <React.Fragment>
-        <HomeComponent movies={this.props.movies} />
+        <HomeComponent movies={movies} />
         <PaginationButtonContainer />
       </React.Fragment>
     );
@@ -30,8 +31,7 @@ const mapStateToProps = state => {
     movies: state.homeReducer.movies,
     error: state.homeReducer.error,
     isLoading: state.homeReducer.isLoading,
-    // page: state.homeReducer.page,
-    // totalPages: state.homeReducer.totalPages,
+    totalPages: state.homeReducer.totalPages,
     query: state.headerReducer.query
   };
 };

@@ -1,16 +1,9 @@
 import types from './types';
-// import axios from 'axios';
-// import API_KEY from '../../../utils';
 
-// const fetchMovieRequest = id => {
-//   const movieUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`;
-//   const request = axios.get(movieUrl);
-
-//   return {
-//     type: types.FETCH_MOVIE_REQUEST,
-//     payload: request
-//   };
-// };
+const fetchMovieRequest = id => ({
+  type: types.FETCH_MOVIE_REQUEST,
+  payload: id
+});
 
 const fetchMovieSuccess = json => ({
   type: types.FETCH_MOVIE_SUCCESS,
@@ -22,14 +15,8 @@ const fetchMovieFailure = error => ({
   payload: error
 });
 
-const addToFavorite = id => ({
-  type: types.ADD_TO_FAVORITE,
-  payload: id
-});
-
 export default {
-  // fetchMovieRequest,
+  fetchMovieRequest,
   fetchMovieSuccess,
-  fetchMovieFailure,
-  addToFavorite
+  fetchMovieFailure
 };

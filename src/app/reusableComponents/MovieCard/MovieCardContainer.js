@@ -16,11 +16,9 @@ class MovieCardContainer extends Component {
           fetchGenreMovies={this.props.fetchGenreMovies}
           fetchMovie={this.props.fetchMovie}
           fetchRecommendedMovies={this.props.fetchRecommendedMovies}
-          addFavoriteMovie={this.props.addFavoriteMovie}
-          removeFavoriteMovie={this.props.removeFavoriteMovie}
-          movies={this.props.movie}
-          genres={this.props.movie.genre_ids.map(id => generateGenre(id))}
-          movie={this.props.movieDetails}
+          movieInfo={this.props.movieInfo}
+          genres={this.props.movieInfo.genre_ids.map(id => generateGenre(id))}
+          movieDetails={this.props.movieDetails}
           favoriteMovies={this.props.favoriteMovies}
         />
       </React.Fragment>

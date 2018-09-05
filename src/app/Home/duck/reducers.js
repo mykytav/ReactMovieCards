@@ -52,23 +52,6 @@ const homeReducer = (state = INITIAL_STATE, action) => {
         error: action.payload,
         isLoading: false
       };
-    // case types.CLEAR_POPULAR_MOVIES:
-    //   return {
-    //     ...state,
-    //     movies: [],
-    //     isLoading: false,
-    //     error: null
-    //   };
-    // case types.ADD_PAGE:
-    //   return {
-    //     ...state,
-    //     page: action.payload++
-    //   };
-    // case types.SUBSTRACT_PAGE:
-    //   return {
-    //     ...state,
-    //     page: state.page === 1 ? 1 : action.payload--
-    //   };
     default:
       return state;
   }

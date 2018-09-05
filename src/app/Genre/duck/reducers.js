@@ -8,13 +8,11 @@ const INITIAL_STATE = {
 
 const genreReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    // case types.FETCH_GENRE_MOVIES_REQUEST:
-    //   return {
-    //     ...state,
-    //     isLoading: true,
-    //     movies: [],
-    //     error: null
-    //   };
+    case types.FETCH_GENRE_MOVIES_REQUEST:
+      return {
+        ...state,
+        isLoading: true
+      };
     case types.FETCH_GENRE_MOVIES_SUCCESS:
       return {
         ...state,

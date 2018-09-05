@@ -14,22 +14,22 @@ class MovieCardComponent extends Component {
   };
 
   render() {
-    const linkToMovie = `/movie/${this.props.movies.id}`;
+    const linkToMovie = `/movie/${this.props.movieInfo.id}`;
     return (
       <div className="movieCard">
         <Link to={linkToMovie} onClick={this.handleMovieClick}>
           <img
             className="movieCard__img"
             src={`https://image.tmdb.org/t/p/w300/${
-              this.props.movies.poster_path
+              this.props.movieInfo.poster_path
             }`}
-            alt={this.props.movies.title}
+            alt={this.props.movieInfo.title}
           />
         </Link>
         <div className="movieCard__info">
           <Link to={linkToMovie} onClick={this.handleMovieClick}>
             <h3 className="movieCard__info__title">
-              {this.props.movies.title}
+              {this.props.movieInfo.title}
             </h3>
           </Link>
           <span className="movieCard__info__genres">
@@ -46,7 +46,7 @@ class MovieCardComponent extends Component {
               );
             })}
           </span>
-          <FavoriteButtonContainer movies={this.props.movies} />
+          <FavoriteButtonContainer movies={this.props.movieInfo} />
         </div>
       </div>
     );

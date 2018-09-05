@@ -3,16 +3,15 @@ import axios from 'axios';
 import Creators from './actions';
 import API_KEY from '../../../utils';
 
-// const fetchMovieRequest = Creators.fetchMovieRequest;
+const fetchMovieRequest = Creators.fetchMovieRequest;
 const fetchMovieSuccess = Creators.fetchMovieSuccess;
 const fetchMovieFailure = Creators.fetchMovieFailure;
-const addToFavorite = Creators.addToFavorite;
 
 const fetchMovie = id => {
   const movieUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&language=en-US`;
 
   return dispatch => {
-    // dispatch(fetchMovieRequest(id));
+    dispatch(fetchMovieRequest(id));
 
     return axios
       .get(movieUrl)
@@ -26,6 +25,5 @@ const fetchMovie = id => {
 };
 
 export default {
-  fetchMovie,
-  addToFavorite
+  fetchMovie
 };

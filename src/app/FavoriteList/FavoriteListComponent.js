@@ -5,7 +5,7 @@ import MovieCardContainer from '../reusableComponents/MovieCard/MovieCardContain
 const FavoriteListComponent = ({ favoriteMovies }) => (
   <div className="favorite main">
     {favoriteMovies.map(movie => (
-      <MovieCardContainer key={movie.id} movie={movie} />
+      <MovieCardContainer key={movie.id} movieInfo={movie} />
     ))}
   </div>
 );
