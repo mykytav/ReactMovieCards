@@ -1,0 +1,14 @@
+// add movie
+const ADD_FAVORITE_MOVIE = 'ADD_FAVORITE_MOVIE';
+
+//remove movie
+const REMOVE_FAVORITE_MOVIE = 'REMOVE_FAVORITE_MOVIE';
+
+// fetch favorite movies
+const FETCH_FAVORITE_MOVIES = 'FETCH_FAVORITE_MOVIES';
+
+export default {
+  ADD_FAVORITE_MOVIE,
+  REMOVE_FAVORITE_MOVIE,
+  FETCH_FAVORITE_MOVIES
+};
