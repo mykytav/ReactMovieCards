@@ -5,35 +5,39 @@ import FavoriteButtonContainer from '../FavoriteButton/FavoriteButtonContainer';
 
 class MovieCardComponent extends Component {
   handleGenreClick = () => {
-    this.props.fetchGenreMovies(this.props.match.params.genre);
+    const fetchGenreMovies = this.props;
+    const params = this.props.match;
+
+    fetchGenreMovies(params.genre);
   };
 
   handleMovieClick = () => {
-    this.props.fetchMovie(this.props.match.params.id);
-    this.props.fetchRecommendedMovies(this.props.match.params.id);
+    const { fetchMovie, fetchRecommendedMovies } = this.props;
+    const params = this.props.match;
+
+    fetchMovie(params.id);
+    fetchRecommendedMovies(params.id);
   };
 
   render() {
-    const linkToMovie = `/movie/${this.props.movieInfo.id}`;
+    const { movieInfo, genres } = this.props;
+    const linkToMovie = `/movie/${movieInfo.id}`;
+
     return (
       <div className="movieCard">
         <Link to={linkToMovie} onClick={this.handleMovieClick}>
           <img
             className="movieCard__img"
-            src={`https://image.tmdb.org/t/p/w300/${
-              this.props.movieInfo.poster_path
-            }`}
-            alt={this.props.movieInfo.title}
+            src={`https://image.tmdb.org/t/p/w300/${movieInfo.poster_path}`}
+            alt={movieInfo.title}
           />
         </Link>
         <div className="movieCard__info">
           <Link to={linkToMovie} onClick={this.handleMovieClick}>
-            <h3 className="movieCard__info__title">
-              {this.props.movieInfo.title}
-            </h3>
+            <h3 className="movieCard__info__title">{movieInfo.title}</h3>
           </Link>
           <span className="movieCard__info__genres">
-            {this.props.genres.map((genre, i) => {
+            {genres.map((genre, i) => {
               const linkToGenre = `/genre/${genre[1]}`;
               return (
                 <Link
@@ -46,7 +50,7 @@ class MovieCardComponent extends Component {
               );
             })}
           </span>
-          <FavoriteButtonContainer movies={this.props.movieInfo} />
+          <FavoriteButtonContainer movies={movieInfo} />
         </div>
       </div>
     );

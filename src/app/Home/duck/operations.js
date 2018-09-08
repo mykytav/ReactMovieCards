@@ -21,8 +21,11 @@ const fetchPopularMovies = (page = 1) => {
       .then(json => {
         const responseMovies = json.data.results;
         const totalPages = json.data.total_pages;
+        const currentPage = json.data.page;
 
-        dispatch(fetchPopularMoviesSuccess(responseMovies, totalPages));
+        dispatch(
+          fetchPopularMoviesSuccess(responseMovies, totalPages, currentPage)
+        );
       })
       .catch(error => dispatch(fetchPopularMoviesFailure(error)));
   };

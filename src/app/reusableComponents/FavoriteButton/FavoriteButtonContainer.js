@@ -6,21 +6,29 @@ import { movieCardOperations } from '../MovieCard/duck';
 
 class FavoriteButtonContainer extends Component {
   handleFavoriteClick = () => {
-    if (this.props.favoriteIds.includes(this.props.movies.id)) {
-      this.props.removeFavoriteMovie(this.props.movies.id);
+    const {
+      favoriteIds,
+      removeFavoriteMovie,
+      addFavoriteMovie,
+      movies
+    } = this.props;
+
+    if (favoriteIds.includes(movies.id)) {
+      removeFavoriteMovie(movies.id);
     } else {
-      this.props.addFavoriteMovie(this.props.movies);
+      addFavoriteMovie(movies);
     }
   };
 
   render() {
+    const { movies, favoriteIds } = this.props;
+
     return (
       <React.Fragment>
         <FavoriteButtonComponent
           handleFavoriteClick={this.handleFavoriteClick}
-          movies={this.props.movies}
-          favoriteMovies={this.props.favoriteMovies}
-          favoriteIds={this.props.favoriteIds}
+          movies={movies}
+          favoriteIds={favoriteIds}
         />
       </React.Fragment>
     );
@@ -28,7 +36,6 @@ class FavoriteButtonContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  favoriteMovies: state.movieCardReducer.favoriteMovies,
   favoriteIds: state.movieCardReducer.favoriteIds
 });
 

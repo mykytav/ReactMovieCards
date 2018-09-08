@@ -6,6 +6,7 @@ import HeaderContainer from './reusableComponents/Header/HeaderContainer';
 import GenreContainer from './Genre/GenreContainer';
 import MovieContainer from './Movie/MovieContainer';
 import FavoriteListContainer from './FavoriteList/FavoriteListContainer';
+import HomePaginationButtonsContainer from './HomePaginationButtons/HomePaginationButtonsContainer';
 
 class App extends Component {
   render() {
@@ -13,7 +14,16 @@ class App extends Component {
       <div className="app">
         <HeaderContainer />
         <Switch>
-          <Route path="/" exact component={HomeContainer} />
+          <Route
+            path="/"
+            exact
+            render={() => (
+              <React.Fragment>
+                <HomeContainer />
+                <HomePaginationButtonsContainer />
+              </React.Fragment>
+            )}
+          />
           <Route path="/genre/:genre" exact component={GenreContainer} />
           <Route path="/movie/:id" component={MovieContainer} />
           <Route path="/favorites" component={FavoriteListContainer} />

@@ -1,8 +1,12 @@
 import React from 'react';
 
-const FavoriteButtonComponent = props => (
-  <button className="btn-favorite" onClick={props.handleFavoriteClick}>
-    {props.favoriteIds.includes(props.movies.id)
+const FavoriteButtonComponent = ({
+  handleFavoriteClick,
+  favoriteIds,
+  movies
+}) => (
+  <button className="btn-favorite" onClick={handleFavoriteClick}>
+    {favoriteIds.includes(movies.id)
       ? 'Remove from favorite'
       : 'Add to favorite'}
   </button>

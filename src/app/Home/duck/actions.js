@@ -4,10 +4,11 @@ const fetchPopularMoviesRequest = () => ({
   type: types.FETCH_POPULAR_MOVIES_REQUEST
 });
 
-const fetchPopularMoviesSuccess = (json, totalPages) => ({
+const fetchPopularMoviesSuccess = (json, totalPages, currentPage) => ({
   type: types.FETCH_POPULAR_MOVIES_SUCCESS,
   payload: json,
-  totalPages
+  totalPages,
+  currentPage
 });
 
 const fetchPopularMoviesFailure = error => ({

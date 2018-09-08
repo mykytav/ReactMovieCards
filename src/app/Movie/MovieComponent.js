@@ -12,7 +12,7 @@ const MovieComponent = ({ movie }) => (
       overview={movie.overview}
     />
     {movie && movie.genres && <MovieInfoComponent movie={movie} />}
-    <RecommendedFilmContainer movie={movie} />
+    <RecommendedFilmContainer />
   </div>
 );
 

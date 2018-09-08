@@ -4,7 +4,8 @@ const INITIAL_STATE = {
   movies: [],
   error: null,
   isLoading: false,
-  totalPages: null
+  totalPages: null,
+  currentPage: 1
 };
 
 const homeReducer = (state = INITIAL_STATE, action) => {
@@ -22,7 +23,8 @@ const homeReducer = (state = INITIAL_STATE, action) => {
         movies: [...action.payload],
         error: null,
         isLoading: false,
-        totalPages: action.totalPages
+        totalPages: action.totalPages,
+        currentPage: action.currentPage
       };
     case types.FETCH_POPULAR_MOVIES_FAILURE:
       return {

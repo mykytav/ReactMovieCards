@@ -2,9 +2,9 @@ import React from 'react';
 
 import MovieCardContainer from '../../reusableComponents/MovieCard/MovieCardContainer';
 
-const RecommendedFilmsComponent = props => (
+const RecommendedFilmsComponent = ({ movies }) => (
   <div className="movie__recommendations">
-    {props.movies.map(movie => {
+    {movies.map(movie => {
       return <MovieCardContainer key={movie.id} movieInfo={movie} />;
     })}
   </div>

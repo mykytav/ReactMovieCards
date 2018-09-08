@@ -10,16 +10,24 @@ import { generateGenre } from '../../../utils';
 
 class MovieCardContainer extends Component {
   render() {
+    const {
+      fetchGenreMovies,
+      fetchMovie,
+      fetchRecommendedMovies,
+      movieInfo,
+      movieDetails,
+      favoriteMovies
+    } = this.props;
     return (
       <React.Fragment>
         <MovieCardComponent
-          fetchGenreMovies={this.props.fetchGenreMovies}
-          fetchMovie={this.props.fetchMovie}
-          fetchRecommendedMovies={this.props.fetchRecommendedMovies}
-          movieInfo={this.props.movieInfo}
-          genres={this.props.movieInfo.genre_ids.map(id => generateGenre(id))}
-          movieDetails={this.props.movieDetails}
-          favoriteMovies={this.props.favoriteMovies}
+          fetchGenreMovies={fetchGenreMovies}
+          fetchMovie={fetchMovie}
+          fetchRecommendedMovies={fetchRecommendedMovies}
+          movieInfo={movieInfo}
+          genres={movieInfo.genre_ids.map(id => generateGenre(id))}
+          movieDetails={movieDetails}
+          favoriteMovies={favoriteMovies}
         />
       </React.Fragment>
     );

@@ -8,13 +8,11 @@ const INITIAL_STATE = {
 
 const recommendedReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    // case types.FETCH_RECOMMENDED_MOVIES_REQUEST:
-    //   return {
-    //     ...state,
-    //     movies: [],
-    //     error: null,
-    //     isLoading: true
-    //   };
+    case types.FETCH_RECOMMENDED_MOVIES_REQUEST:
+      return {
+        ...state,
+        isLoading: true
+      };
     case types.FETCH_RECOMMENDED_MOVIES_SUCCESS:
       return {
         ...state,

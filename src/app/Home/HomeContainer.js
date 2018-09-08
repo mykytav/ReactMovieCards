@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import HomeComponent from './HomeComponent';
 import { homeOperations } from './duck';
-import PaginationButtonContainer from '../reusableComponents/Header/PaginationButtons/PaginationButtonsContainer';
 
 class HomeContainer extends Component {
   componentDidMount() {
@@ -20,7 +19,6 @@ class HomeContainer extends Component {
     return (
       <React.Fragment>
         <HomeComponent movies={movies} />
-        <PaginationButtonContainer />
       </React.Fragment>
     );
   }

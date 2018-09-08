@@ -4,7 +4,6 @@ import { withRouter, NavLink, Link } from 'react-router-dom';
 
 import { homeOperations } from '../../Home/duck';
 import { headerOperations } from './duck';
-import PaginationButtonsContainer from './PaginationButtons/PaginationButtonsContainer';
 
 class HeaderContainer extends Component {
   constructor(props) {
@@ -16,45 +15,27 @@ class HeaderContainer extends Component {
   }
 
   handleInputChange = e => {
+    const { getValueFromInput, fetchPopularMovies } = this.props;
     const target = e.target.value;
+
+    if (target === '') {
+      fetchPopularMovies();
+    }
+
     this.setState(() => ({
       query: target
     }));
-    this.props.getValueFromInput(target);
-
-    if (target === '') {
-      this.props.fetchPopularMovies();
-    }
+    getValueFromInput(target);
   };
 
   handleSubmitForm = e => {
+    const { history, fetchSearchMovies } = this.props;
     e.preventDefault();
     if (this.input.current.value) {
-      this.props.history.push('/');
-      this.props.fetchSearchMovies(this.state.query);
+      history.push('/');
+      fetchSearchMovies(this.state.query);
     }
   };
-
-  // handlePrevPageClick = () => {
-  //   if (this.state.query.length > 0) {
-  //     this.props.substractPage(this.props.page);
-  //     this.props.fetchSearchMovies(this.props.page);
-  //   } else {
-  //     this.props.fetchPopularMovies();
-  //   }
-  // };
-
-  // handleNextPageClick = () => {
-  //   const page = this.props.page;
-  //   this.props.addPage(page);
-
-  //   if (this.state.query.length > 0) {
-  //     this.props.fetchSearchMovies(page);
-  //   } else {
-  //     this.props.fetchPopularMovies(page);
-  //     console.log(this.props.page);
-  //   }
-  // };
 
   render() {
     return (
@@ -73,17 +54,13 @@ class HeaderContainer extends Component {
         </form>
         <Link to="/">Log out</Link>
         <NavLink to="/favorites">My Favorite movies</NavLink>
-        <PaginationButtonsContainer />
       </nav>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  inputValue: state.headerReducer.query,
-  movies: state.homeReducer.movies
-  // page: state.homeReducer.page,
-  // totalPages: state.homeReducer.totalPages
+  inputValue: state.headerReducer.query
 });
 
 const mapDispatchToProps = dispatch => {
@@ -99,20 +76,10 @@ const mapDispatchToProps = dispatch => {
     dispatch(headerOperations.getValueFromInput(input));
   };
 
-  // const addPage = page => {
-  //   dispatch(homeOperations.addPage(page));
-  // };
-
-  // const substractPage = page => {
-  //   dispatch(homeOperations.substractPage(page));
-  // };
-
   return {
     fetchSearchMovies,
     fetchPopularMovies,
     getValueFromInput
-    // addPage,
-    // substractPage
   };
 };
 
