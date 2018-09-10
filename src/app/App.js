@@ -7,6 +7,7 @@ import GenreContainer from './Genre/GenreContainer';
 import MovieContainer from './Movie/MovieContainer';
 import FavoriteListContainer from './FavoriteList/FavoriteListContainer';
 import HomePaginationButtonsContainer from './HomePaginationButtons/HomePaginationButtonsContainer';
+import GenrePaginationButtonsContainer from './GenrePaginationButtons/GenrePaginationButtonsContainer';
 
 class App extends Component {
   render() {
@@ -24,7 +25,16 @@ class App extends Component {
               </React.Fragment>
             )}
           />
-          <Route path="/genre/:genre" exact component={GenreContainer} />
+          <Route
+            path="/genre/:genre"
+            exact
+            render={({ match }) => (
+              <React.Fragment>
+                <GenreContainer match={match} />
+                <GenrePaginationButtonsContainer match={match} />
+              </React.Fragment>
+            )}
+          />
           <Route path="/movie/:id" component={MovieContainer} />
           <Route path="/favorites" component={FavoriteListContainer} />
         </Switch>

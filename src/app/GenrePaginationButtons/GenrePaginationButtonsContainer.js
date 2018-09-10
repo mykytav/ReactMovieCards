@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import GenrePaginationButtonsComponent from './GenrePaginationButtonsComponent';
-import { homeOperations } from '../Home/duck';
 import { genreOperations } from '../Genre/duck';
 
 class GenrePaginationButtonsContainer extends Component {
@@ -11,7 +10,7 @@ class GenrePaginationButtonsContainer extends Component {
   };
 
   componentDidUpdate(prevProps) {
-    if (this.props.query !== prevProps.query) {
+    if (this.props.genreId !== prevProps.genreId) {
       this.setState({
         currentPage: 1
       });
@@ -20,10 +19,9 @@ class GenrePaginationButtonsContainer extends Component {
 
   handleNextPageClick = () => {
     const {
-      totalPages,
-      query,
+      match: { params },
       fetchGenreMovies,
-      fetchSearchMovies
+      totalPages
     } = this.props;
 
     let nextPage =
@@ -31,35 +29,25 @@ class GenrePaginationButtonsContainer extends Component {
         ? this.state.currentPage
         : this.state.currentPage + 1;
 
-    if (query.length > 0) {
-      fetchSearchMovies(query, nextPage);
-      this.setState({
-        currentPage: nextPage
-      });
-    } else {
-      fetchGenreMovies(nextPage);
-      this.setState({
-        currentPage: nextPage
-      });
-    }
+    fetchGenreMovies(params.genre, nextPage);
+    this.setState({
+      currentPage: nextPage
+    });
   };
 
   handlePrevPageClick = () => {
-    const { query, fetchPopularMovies, fetchSearchMovies } = this.props;
+    const {
+      match: { params },
+      fetchGenreMovies
+    } = this.props;
+
     const prevPage =
       this.state.currentPage === 1 ? 1 : this.state.currentPage - 1;
 
-    if (query.length > 0) {
-      fetchSearchMovies(query, prevPage);
-      this.setState({
-        currentPage: prevPage
-      });
-    } else {
-      fetchPopularMovies(prevPage);
-      this.setState({
-        currentPage: prevPage
-      });
-    }
+    fetchGenreMovies(params.genre, prevPage);
+    this.setState({
+      currentPage: prevPage
+    });
   };
 
   render() {
@@ -77,22 +65,32 @@ class GenrePaginationButtonsContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  query: state.headerReducer.query,
-  totalPages: state.homeReducer.totalPages
+  totalPages: state.genreReducer.totalPages,
+  genreId: state.genreReducer.genreId
 });
 
 const mapDispatchToProps = dispatch => {
-  const fetchGenreMovies = id => {
-    dispatch(genreOperations.fetchGenreMovies(id));
+  const fetchGenreMovies = (id, page) => {
+    dispatch(genreOperations.fetchGenreMovies(id, page));
   };
 
-  const fetchSearchMovies = movieName => {
-    dispatch(homeOperations.fetchSearchMovies(movieName));
-  };
+  // const addGenrePage = () => {
+  //   dispatch(genreOperations.addGenrePage());
+  // };
+
+  // const substractGenrePage = () => {
+  //   dispatch(genreOperations.substractGenrePage());
+  // };
+
+  // const resetGenrePage = () => {
+  //   dispatch(genreOperations.resetGenrePage());
+  // };
 
   return {
-    fetchGenreMovies,
-    fetchSearchMovies
+    fetchGenreMovies
+    // addGenrePage,
+    // substractGenrePage,
+    // resetGenrePage
   };
 };
 

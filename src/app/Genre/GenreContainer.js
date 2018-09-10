@@ -11,7 +11,7 @@ class GenreContainer extends Component {
       fetchGenreMovies
     } = this.props;
 
-    fetchGenreMovies(params.genre);
+    fetchGenreMovies(params.genre, 1);
   }
 
   render() {
@@ -37,8 +37,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  const fetchGenreMovies = id => {
-    dispatch(genreOperations.fetchGenreMovies(id));
+  const fetchGenreMovies = (id, page) => {
+    dispatch(genreOperations.fetchGenreMovies(id, page));
   };
 
   return {

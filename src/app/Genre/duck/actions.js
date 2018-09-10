@@ -5,9 +5,12 @@ const fetchGenreMoviesRequest = id => ({
   payload: id
 });
 
-const fetchGenreMoviesSuccess = json => ({
+const fetchGenreMoviesSuccess = (json, totalPages, currentPage, id) => ({
   type: types.FETCH_GENRE_MOVIES_SUCCESS,
-  payload: json
+  payload: json,
+  totalPages,
+  currentPage,
+  id
 });
 
 const fetchGenreMoviesFailure = error => ({
@@ -15,8 +18,23 @@ const fetchGenreMoviesFailure = error => ({
   payload: error
 });
 
+const addGenrePage = () => ({
+  type: types.ADD_GENRE_PAGE
+});
+
+const substractGenrePage = () => ({
+  type: types.SUBSTRACT_GENRE_PAGE
+});
+
+const resetGenrePage = () => ({
+  type: types.RESET_GENRE_PAGE
+});
+
 export default {
   fetchGenreMoviesRequest,
   fetchGenreMoviesSuccess,
-  fetchGenreMoviesFailure
+  fetchGenreMoviesFailure,
+  addGenrePage,
+  substractGenrePage,
+  resetGenrePage
 };

@@ -3,7 +3,10 @@ import types from './types';
 const INITIAL_STATE = {
   movies: [],
   error: null,
-  isLoading: false
+  isLoading: false,
+  totalPages: null,
+  currentPage: 1,
+  genreId: null
 };
 
 const genreReducer = (state = INITIAL_STATE, action) => {
@@ -18,7 +21,9 @@ const genreReducer = (state = INITIAL_STATE, action) => {
         ...state,
         movies: [...action.payload],
         isLoading: false,
-        error: null
+        error: null,
+        totalPages: action.totalPages,
+        genreId: action.id
       };
     case types.FETCH_GENRE_MOVIES_FAILURE:
       return {
@@ -27,6 +32,22 @@ const genreReducer = (state = INITIAL_STATE, action) => {
         isLoading: false,
         movies: []
       };
+    // case types.ADD_GENRE_PAGE:
+    //   return {
+    //     currentPage:
+    //       state.currentPage >= state.totalPages
+    //         ? state.currentPage
+    //         : state.currentPage++
+    //   };
+    // case types.SUBSTRACT_GENRE_PAGE:
+    //   return {
+    //     currentPage:
+    //       state.currentPage === 1 ? state.currentPage : state.currentPage--
+    //   };
+    // case types.RESET_GENRE_PAGE:
+    //   return {
+    //     currentPage: 1
+    //   };
     default:
       return state;
   }
