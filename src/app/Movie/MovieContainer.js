@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Loading from 'react-loading-components';
 
 import MovieComponent from './MovieComponent';
 import { movieOperations } from './duck';
@@ -20,7 +21,11 @@ class MovieContainer extends Component {
   render() {
     const { isLoading, movie } = this.props;
     if (isLoading) {
-      return <p>Loading...</p>;
+      return (
+        <div className="loading">
+          <Loading type="audio" width={100} height={100} fill="#f44242" />
+        </div>
+      );
     }
 
     return (

@@ -4,6 +4,7 @@ import { withRouter, NavLink, Link } from 'react-router-dom';
 
 import { homeOperations } from '../../Home/duck';
 import { headerOperations } from './duck';
+import HeaderForm from './HeaderForm';
 
 class HeaderContainer extends Component {
   constructor(props) {
@@ -39,21 +40,29 @@ class HeaderContainer extends Component {
 
   render() {
     return (
-      <nav className="header">
-        <NavLink to="/">Back To Index</NavLink>
-        <form className="header__form form" onSubmit={this.handleSubmitForm}>
-          <input
-            type="text "
-            className="form__input"
-            placeholder="Enter a movie name..."
-            value={this.state.query}
-            onChange={this.handleInputChange}
-            ref={this.input}
+      <nav className="nav level">
+        <div className="nav__link level-item has-text-centered">
+          <NavLink className="button is-primary" to="/">
+            Back To Index
+          </NavLink>
+        </div>
+        <div className="nav__form level-item has-text-centered">
+          <HeaderForm
+            handleInputChange={this.handleInputChange}
+            handleSubmitForm={this.handleSubmitForm}
+            query={this.state.query}
+            refInput={this.input}
           />
-          <button className="form__btn">Search</button>
-        </form>
-        <Link to="/">Log out</Link>
-        <NavLink to="/favorites">My Favorite movies</NavLink>
+        </div>
+        <div className="nav__links is-flex-tablet level-item has-text-centered">
+          <NavLink className="button is-white" to="/favorites">
+            Favorites
+            <i className="fa fa-heart" style={{ color: 'red' }} />
+          </NavLink>
+          <Link className="button is-danger" to="/">
+            Log out
+          </Link>
+        </div>
       </nav>
     );
   }

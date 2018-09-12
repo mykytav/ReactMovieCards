@@ -24,23 +24,30 @@ class MovieCardComponent extends Component {
     const linkToMovie = `/movie/${movieInfo.id}`;
 
     return (
-      <div className="movieCard">
-        <Link to={linkToMovie} onClick={this.handleMovieClick}>
-          <img
-            className="movieCard__img"
-            src={`https://image.tmdb.org/t/p/w300/${movieInfo.poster_path}`}
-            alt={movieInfo.title}
-          />
-        </Link>
+      <div className="movieCard card">
+        <div className="card-image">
+          <Link to={linkToMovie} onClick={this.handleMovieClick}>
+            <figure className="image is-4by5">
+              <img
+                className="movieCard__img"
+                src={`https://image.tmdb.org/t/p/w500/${movieInfo.poster_path}`}
+                alt={movieInfo.title}
+              />
+            </figure>
+          </Link>
+        </div>
         <div className="movieCard__info">
           <Link to={linkToMovie} onClick={this.handleMovieClick}>
-            <h3 className="movieCard__info__title">{movieInfo.title}</h3>
+            <p className="movieCard__info__title title is-4 has-text-centered">
+              {movieInfo.title}
+            </p>
           </Link>
-          <span className="movieCard__info__genres">
+          <div className="movieCard__info__genres is-flex">
             {genres.map((genre, i) => {
               const linkToGenre = `/genre/${genre[1]}`;
               return (
                 <Link
+                  className="button is-small is-white"
                   onClick={this.handleGenreClick}
                   key={genre + i}
                   to={linkToGenre}
@@ -49,7 +56,7 @@ class MovieCardComponent extends Component {
                 </Link>
               );
             })}
-          </span>
+          </div>
           <FavoriteButtonContainer movies={movieInfo} />
         </div>
       </div>

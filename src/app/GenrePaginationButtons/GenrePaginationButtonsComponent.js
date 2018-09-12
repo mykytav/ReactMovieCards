@@ -6,16 +6,16 @@ const GenrePaginationButtonsComponent = ({
   totalPages,
   currentPage
 }) => (
-  <div className=" buttons">
+  <div className="buttons pagination is-rounded">
     <button
-      className="buttons--prev"
+      className="buttons--prev pagination-previous"
       disabled={currentPage === 1}
       onClick={handlePrevPageClick}
     >
       Previous Page
     </button>
     <button
-      className="buttons--next"
+      className="buttons--next pagination-next"
       disabled={totalPages <= currentPage}
       onClick={handleNextPageClick}
     >

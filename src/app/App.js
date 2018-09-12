@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import HomeContainer from './Home/HomeContainer';
 import HeaderContainer from './reusableComponents/Header/HeaderContainer';
+import Footer from './reusableComponents/Footer/Footer';
 import GenreContainer from './Genre/GenreContainer';
 import MovieContainer from './Movie/MovieContainer';
 import FavoriteListContainer from './FavoriteList/FavoriteListContainer';
@@ -12,7 +13,7 @@ import GenrePaginationButtonsContainer from './GenrePaginationButtons/GenrePagin
 class App extends Component {
   render() {
     return (
-      <div className="app">
+      <div className="container is-fluid">
         <HeaderContainer />
         <Switch>
           <Route
@@ -38,6 +39,7 @@ class App extends Component {
           <Route path="/movie/:id" component={MovieContainer} />
           <Route path="/favorites" component={FavoriteListContainer} />
         </Switch>
+        <Footer />
       </div>
     );
   }

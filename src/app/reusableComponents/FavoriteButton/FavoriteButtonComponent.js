@@ -5,11 +5,13 @@ const FavoriteButtonComponent = ({
   favoriteIds,
   movies
 }) => (
-  <button className="btn-favorite" onClick={handleFavoriteClick}>
-    {favoriteIds.includes(movies.id)
-      ? 'Remove from favorite'
-      : 'Add to favorite'}
-  </button>
+  <span className="btn-favorite icon  is-large" onClick={handleFavoriteClick}>
+    {favoriteIds.includes(movies.id) ? (
+      <i className="fas fa-2x fa-trash-alt" style={{ color: 'white' }} />
+    ) : (
+      <i className="fas fa-2x fa-heart" style={{ color: 'red' }} />
+    )}
+  </span>
 );
 
 export default FavoriteButtonComponent;
