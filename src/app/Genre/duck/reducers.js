@@ -32,22 +32,6 @@ const genreReducer = (state = INITIAL_STATE, action) => {
         isLoading: false,
         movies: []
       };
-    // case types.ADD_GENRE_PAGE:
-    //   return {
-    //     currentPage:
-    //       state.currentPage >= state.totalPages
-    //         ? state.currentPage
-    //         : state.currentPage++
-    //   };
-    // case types.SUBSTRACT_GENRE_PAGE:
-    //   return {
-    //     currentPage:
-    //       state.currentPage === 1 ? state.currentPage : state.currentPage--
-    //   };
-    // case types.RESET_GENRE_PAGE:
-    //   return {
-    //     currentPage: 1
-    //   };
     default:
       return state;
   }

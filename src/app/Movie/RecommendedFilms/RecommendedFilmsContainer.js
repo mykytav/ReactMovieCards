@@ -7,7 +7,13 @@ class RecommendedFilmsContainer extends Component {
   render() {
     return (
       <React.Fragment>
-        <RecommendedFilmsComponent movies={this.props.movies} />
+        {this.props.movies.length > 0 ? (
+          <RecommendedFilmsComponent movies={this.props.movies} />
+        ) : (
+          <div style={{ width: '150px' }}>
+            Oops... seems like there is no recommendations for this movie
+          </div>
+        )}
       </React.Fragment>
     );
   }

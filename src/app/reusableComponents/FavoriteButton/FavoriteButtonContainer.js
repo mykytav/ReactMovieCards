@@ -10,24 +10,24 @@ class FavoriteButtonContainer extends Component {
       favoriteIds,
       removeFavoriteMovie,
       addFavoriteMovie,
-      movies
+      individualMovie
     } = this.props;
 
-    if (favoriteIds.includes(movies.id)) {
-      removeFavoriteMovie(movies.id);
+    if (favoriteIds.includes(individualMovie.id)) {
+      removeFavoriteMovie(individualMovie.id);
     } else {
-      addFavoriteMovie(movies);
+      addFavoriteMovie(individualMovie);
     }
   };
 
   render() {
-    const { movies, favoriteIds } = this.props;
+    const { individualMovie, favoriteIds } = this.props;
 
     return (
       <React.Fragment>
         <FavoriteButtonComponent
           handleFavoriteClick={this.handleFavoriteClick}
-          movies={movies}
+          individualMovie={individualMovie}
           favoriteIds={favoriteIds}
         />
       </React.Fragment>

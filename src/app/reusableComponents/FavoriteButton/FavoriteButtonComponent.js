@@ -3,13 +3,13 @@ import React from 'react';
 const FavoriteButtonComponent = ({
   handleFavoriteClick,
   favoriteIds,
-  movies
+  individualMovie
 }) => (
   <span className="btn-favorite icon  is-large" onClick={handleFavoriteClick}>
-    {favoriteIds.includes(movies.id) ? (
-      <i className="fas fa-2x fa-trash-alt" style={{ color: 'white' }} />
+    {individualMovie && favoriteIds.includes(individualMovie.id) ? (
+      <i className="fas fa-2x fa-trash-alt" />
     ) : (
-      <i className="fas fa-2x fa-heart" style={{ color: 'red' }} />
+      <i className="fas fa-2x fa-heart" />
     )}
   </span>
 );

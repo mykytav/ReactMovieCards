@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Loading from 'react-loading-components';
 
 import FavoriteListComponent from './FavoriteListComponent';
 import { movieCardOperations } from '../reusableComponents/MovieCard/duck';
+import LoadingComponent from '../reusableComponents/Loading/Loading';
 
 class FavoriteListContainer extends Component {
   componentDidMount() {
@@ -16,11 +16,7 @@ class FavoriteListContainer extends Component {
     const { isLoading, favoriteMovies } = this.props;
 
     if (isLoading) {
-      return (
-        <div className="loading">
-          <Loading type="audio" width={100} height={100} fill="#f44242" />
-        </div>
-      );
+      return <LoadingComponent />;
     }
 
     return (

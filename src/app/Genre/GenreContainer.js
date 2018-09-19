@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Loading from 'react-loading-components';
 
 import GenreComponent from './GenreComponent';
 import { genreOperations } from './duck';
+import LoadingComponent from '../reusableComponents/Loading/Loading';
 
 class GenreContainer extends Component {
   componentDidMount() {
@@ -15,19 +15,23 @@ class GenreContainer extends Component {
     fetchGenreMovies(params.genre, 1);
   }
 
+  componentDidUpdate() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
-    const { isLoading, movies } = this.props;
+    const {
+      isLoading,
+      movies,
+      match: { params }
+    } = this.props;
     if (isLoading) {
-      return (
-        <div className="loading">
-          <Loading type="audio" width={100} height={100} fill="#f44242" />
-        </div>
-      );
+      return <LoadingComponent />;
     }
 
     return (
       <React.Fragment>
-        <GenreComponent movies={movies} />
+        <GenreComponent movies={movies} genreName={params.genre} />
       </React.Fragment>
     );
   }

@@ -4,6 +4,7 @@ import MovieCardContainer from '../../reusableComponents/MovieCard/MovieCardCont
 
 const RecommendedFilmsComponent = ({ movies }) => (
   <div className="movie__recommendations">
+    <h5 className="title has-text-centered is-size-4">Also you might like:</h5>
     {movies.map(movie => {
       return <MovieCardContainer key={movie.id} movieInfo={movie} />;
     })}

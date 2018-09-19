@@ -6,11 +6,8 @@ import RecommendedFilmContainer from './RecommendedFilms/RecommendedFilmsContain
 
 const MovieComponent = ({ movie }) => (
   <div className="movie">
-    <MovieMainInfoComponent
-      poster={movie.poster_path}
-      title={movie.title}
-      overview={movie.overview}
-    />
+    <h2 className="movie__title title has-text-centered">{movie.title}</h2>
+    <MovieMainInfoComponent movie={movie} />
     {movie && movie.genres && <MovieInfoComponent movie={movie} />}
     <RecommendedFilmContainer />
   </div>

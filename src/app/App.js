@@ -9,6 +9,7 @@ import MovieContainer from './Movie/MovieContainer';
 import FavoriteListContainer from './FavoriteList/FavoriteListContainer';
 import HomePaginationButtonsContainer from './HomePaginationButtons/HomePaginationButtonsContainer';
 import GenrePaginationButtonsContainer from './GenrePaginationButtons/GenrePaginationButtonsContainer';
+import NotFound from './reusableComponents/NotFound/NotFound';
 
 class App extends Component {
   render() {
@@ -38,6 +39,7 @@ class App extends Component {
           />
           <Route path="/movie/:id" component={MovieContainer} />
           <Route path="/favorites" component={FavoriteListContainer} />
+          <Route path="*" component={NotFound} />
         </Switch>
         <Footer />
       </div>

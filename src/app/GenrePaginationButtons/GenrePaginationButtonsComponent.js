@@ -1,26 +1,34 @@
 import React from 'react';
 
+import GenrePaginationListButtons from './GenrePaginationListButtons';
+
 const GenrePaginationButtonsComponent = ({
   handleNextPageClick,
   handlePrevPageClick,
+  handlePageNumberClick,
   totalPages,
   currentPage
 }) => (
-  <div className="buttons pagination is-rounded">
-    <button
-      className="buttons--prev pagination-previous"
+  <div className="btn-pagination pagination is-centered is-rounded">
+    <a
+      className="btn-pagination-prev pagination-previous"
       disabled={currentPage === 1}
       onClick={handlePrevPageClick}
     >
       Previous Page
-    </button>
-    <button
-      className="buttons--next pagination-next"
+    </a>
+    <a
+      className="btn-pagination-next pagination-next"
       disabled={totalPages <= currentPage}
       onClick={handleNextPageClick}
     >
       Next Page
-    </button>
+    </a>
+    <GenrePaginationListButtons
+      totalPages={totalPages}
+      currentPage={currentPage}
+      handlePageNumberClick={handlePageNumberClick}
+    />
   </div>
 );
 

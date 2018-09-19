@@ -17,6 +17,18 @@ class GenrePaginationButtonsContainer extends Component {
     }
   }
 
+  handlePageNumberClick = pageNumber => {
+    const {
+      match: { params },
+      fetchGenreMovies
+    } = this.props;
+
+    fetchGenreMovies(params.genre, pageNumber);
+    this.setState({
+      currentPage: pageNumber
+    });
+  };
+
   handleNextPageClick = () => {
     const {
       match: { params },
@@ -56,6 +68,7 @@ class GenrePaginationButtonsContainer extends Component {
         <GenrePaginationButtonsComponent
           handlePrevPageClick={this.handlePrevPageClick}
           handleNextPageClick={this.handleNextPageClick}
+          handlePageNumberClick={this.handlePageNumberClick}
           currentPage={this.state.currentPage}
           totalPages={this.props.totalPages}
         />
@@ -74,23 +87,8 @@ const mapDispatchToProps = dispatch => {
     dispatch(genreOperations.fetchGenreMovies(id, page));
   };
 
-  // const addGenrePage = () => {
-  //   dispatch(genreOperations.addGenrePage());
-  // };
-
-  // const substractGenrePage = () => {
-  //   dispatch(genreOperations.substractGenrePage());
-  // };
-
-  // const resetGenrePage = () => {
-  //   dispatch(genreOperations.resetGenrePage());
-  // };
-
   return {
     fetchGenreMovies
-    // addGenrePage,
-    // substractGenrePage,
-    // resetGenrePage
   };
 };
 

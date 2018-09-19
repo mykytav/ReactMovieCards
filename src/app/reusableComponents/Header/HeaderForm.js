@@ -18,7 +18,7 @@ const HeaderForm = ({
       />
     </div>
     <div className="control">
-      <button className="button is-info">Search</button>
+      <button className="form__button button">Search</button>
     </div>
   </form>
 );

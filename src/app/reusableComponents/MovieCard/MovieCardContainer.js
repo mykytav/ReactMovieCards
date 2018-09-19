@@ -25,7 +25,10 @@ class MovieCardContainer extends Component {
           fetchMovie={fetchMovie}
           fetchRecommendedMovies={fetchRecommendedMovies}
           movieInfo={movieInfo}
-          genres={movieInfo.genre_ids.map(id => generateGenre(id))}
+          genres={
+            movieInfo.genre_ids &&
+            movieInfo.genre_ids.map(id => generateGenre(id))
+          }
           movieDetails={movieDetails}
           favoriteMovies={favoriteMovies}
         />

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Loading from 'react-loading-components';
 
 import HomeComponent from './HomeComponent';
 import { homeOperations } from './duck';
+import LoadingComponent from '../reusableComponents/Loading/Loading';
 
 class HomeContainer extends Component {
   componentDidMount() {
@@ -11,14 +11,14 @@ class HomeContainer extends Component {
     !query && fetchPopularMovies();
   }
 
+  componentDidUpdate() {
+    window.scrollTo(0, 0);
+  }
+
   render() {
     const { isLoading, movies } = this.props;
     if (isLoading) {
-      return (
-        <div className="loading">
-          <Loading type="audio" width={100} height={100} fill="#f44242" />
-        </div>
-      );
+      return <LoadingComponent />;
     }
 
     return (

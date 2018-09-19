@@ -1,11 +1,9 @@
 import React from 'react';
 
 const Footer = () => (
-  <footer className="hero">
+  <footer className="hero is-widescreen is-fullhd">
     <div className="content has-text-centered">
-      <p>
-        <strong>Movie Cards</strong> by Mykyta Vlasov.
-      </p>
+      <p>Movie Cards by Mykyta Vlasov, made with Bulma.</p>
     </div>
   </footer>
 );

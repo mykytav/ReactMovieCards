@@ -29,8 +29,11 @@ class MovieCardComponent extends Component {
           <Link to={linkToMovie} onClick={this.handleMovieClick}>
             <figure className="image is-4by5">
               <img
-                className="movieCard__img"
-                src={`https://image.tmdb.org/t/p/w500/${movieInfo.poster_path}`}
+                src={
+                  movieInfo.poster_path
+                    ? `https://image.tmdb.org/t/p/w500/${movieInfo.poster_path}`
+                    : 'http://plainshumanities.unl.edu/army_officers_wives/images/medium/x.jpg'
+                }
                 alt={movieInfo.title}
               />
             </figure>
@@ -38,26 +41,29 @@ class MovieCardComponent extends Component {
         </div>
         <div className="movieCard__info">
           <Link to={linkToMovie} onClick={this.handleMovieClick}>
-            <p className="movieCard__info__title title is-4 has-text-centered">
+            <p className="movieCard__info-title title is-4 has-text-centered">
               {movieInfo.title}
             </p>
           </Link>
-          <div className="movieCard__info__genres is-flex">
-            {genres.map((genre, i) => {
-              const linkToGenre = `/genre/${genre[1]}`;
-              return (
-                <Link
-                  className="button is-small is-white"
-                  onClick={this.handleGenreClick}
-                  key={genre + i}
-                  to={linkToGenre}
-                >
-                  {genre[0]}
-                </Link>
-              );
-            })}
+          <div className="movieCard__info-bottom is-flex">
+            <div className="movieCard__info-genres is-flex">
+              {genres &&
+                genres.map((genre, i) => {
+                  const linkToGenre = `/genre/${genre[1]}`;
+                  return (
+                    <Link
+                      className="movieCard__btn-genres button is-small"
+                      onClick={this.handleGenreClick}
+                      key={genre + i}
+                      to={linkToGenre}
+                    >
+                      {genre[0]}
+                    </Link>
+                  );
+                })}
+            </div>
+            <FavoriteButtonContainer individualMovie={movieInfo} />
           </div>
-          <FavoriteButtonContainer movies={movieInfo} />
         </div>
       </div>
     );

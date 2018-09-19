@@ -15,6 +15,17 @@ class HeaderContainer extends Component {
     };
   }
 
+  handleBackToIndexClick = () => {
+    const { getValueFromInput, fetchPopularMovies } = this.props;
+    const { query } = this.state;
+    fetchPopularMovies(1);
+
+    this.setState(() => ({
+      query: ''
+    }));
+    getValueFromInput(query);
+  };
+
   handleInputChange = e => {
     const { getValueFromInput, fetchPopularMovies } = this.props;
     const target = e.target.value;
@@ -40,10 +51,14 @@ class HeaderContainer extends Component {
 
   render() {
     return (
-      <nav className="nav level">
+      <nav className="nav level is-flex-mobile">
         <div className="nav__link level-item has-text-centered">
-          <NavLink className="button is-primary" to="/">
-            Back To Index
+          <NavLink
+            className="button"
+            to="/"
+            onClick={this.handleBackToIndexClick}
+          >
+            Back To Popular
           </NavLink>
         </div>
         <div className="nav__form level-item has-text-centered">
@@ -55,11 +70,13 @@ class HeaderContainer extends Component {
           />
         </div>
         <div className="nav__links is-flex-tablet level-item has-text-centered">
-          <NavLink className="button is-white" to="/favorites">
+          <NavLink className="nav__link-fav button" to="/favorites">
             Favorites
-            <i className="fa fa-heart" style={{ color: 'red' }} />
+            <span className="nav__link-icon icon has-text-danger">
+              <i className="fa fa-heart" />
+            </span>
           </NavLink>
-          <Link className="button is-danger" to="/">
+          <Link className="nav__link-logout button is-danger" to="/">
             Log out
           </Link>
         </div>

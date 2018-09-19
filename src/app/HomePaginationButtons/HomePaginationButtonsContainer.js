@@ -17,6 +17,22 @@ class HomePaginationButtonsContainer extends Component {
     }
   }
 
+  handlePageNumberClick = pageNumber => {
+    const { query, fetchPopularMovies, fetchSearchMovies } = this.props;
+
+    if (query.length > 0) {
+      fetchSearchMovies(query, pageNumber);
+      this.setState({
+        currentPage: pageNumber
+      });
+    } else {
+      fetchPopularMovies(pageNumber);
+      this.setState({
+        currentPage: pageNumber
+      });
+    }
+  };
+
   handleNextPageClick = () => {
     const {
       totalPages,
@@ -67,6 +83,7 @@ class HomePaginationButtonsContainer extends Component {
         <HomePaginationButtonsComponent
           handlePrevPageClick={this.handlePrevPageClick}
           handleNextPageClick={this.handleNextPageClick}
+          handlePageNumberClick={this.handlePageNumberClick}
           currentPage={this.state.currentPage}
           totalPages={this.props.totalPages}
         />

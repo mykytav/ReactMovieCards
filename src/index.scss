@@ -3,23 +3,106 @@
 @import 'bulma/sass/utilities/functions';
 
 // Your customisations go here...
+//reset bulma
 $input-focus-border-color: none;
 $input-focus-color: none;
 $input-focus-box-shadow-color: none;
+$button-border-color: none;
+$button-focus-border-color: none;
+$button-focus-color: none;
+$button-hover-border-color: none;
+$button-focus-box-shadow-color: none;
+$button-active-border-color: none;
+$button-text-color: none;
+$pagination-border-color: none;
+$pagination-hover-border-color: none;
+//colors
+$bg: #fcc600;
+$bg-invert: findColorInvert($bg);
+$movieBg: rgba(0, 0, 0, 0.9);
+$movieRecommendationsBg: rgba(255, 255, 255, 0.25);
+$footer: rgba(0, 160, 136, 0.9);
+$footer-invert: findColorInvert($footer);
+$yellow: #ffe940;
+$yellow-invert: findColorInvert($yellow);
+$blue: #7400ff;
+$blue-invert: findColorInvert($blue);
+$dark-blue: #5608b4;
+$dark-blue-invert: findColorInvert($dark-blue);
+$dark-purple: #851385;
+$dark-purple-invert: findColorInvert($dark-purple);
+$purple: #993d99;
+$purple-invert: findColorInvert($purple);
+$heart: rgba(238, 29, 67, 0.767);
+$heart-hover: #f91d2b;
+$trash: rgb(104, 66, 9);
+$trash-hover: rgb(156, 100, 16);
 
 // Import the rest of Bulma:
 @import 'bulma/bulma.sass';
+
+::-webkit-scrollbar {
+  display: none;
+}
 
 body {
   margin: 0;
   padding: 0;
   padding-top: 20px;
   font-family: 'Roboto', sans-serif;
-  background: #fcc600;
+  background: $bg;
   min-height: 100vh;
 }
 
+.loading {
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav {
+  & a {
+    background: $purple;
+    color: $purple-invert;
+    transition: all 0.3s ease;
+    &:hover {
+      background: $dark-purple;
+      color: $dark-purple-invert;
+    }
+  }
+  &__links {
+    justify-content: space-around;
+  }
+  &__link-fav {
+    position: relative;
+    padding-right: 30px;
+  }
+  &__link-icon {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+  }
+  &__link-logout.is-danger:hover {
+    background: $heart;
+  }
+}
+
+.form {
+  flex: 1;
+  &__button {
+    background: $purple;
+    color: $purple-invert;
+    transition: all 0.3s ease;
+    &:hover {
+      background: $dark-purple;
+      color: $dark-purple-invert;
+    }
+  }
+}
+
 .main {
+  padding: 30px 0px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 20px;
@@ -28,99 +111,405 @@ body {
 
 .movie {
   display: grid;
-  grid-template-columns: 4fr 3fr 3fr;
+  grid-gap: 20px;
+  grid-template-areas:
+    'title title title'
+    'main info recommended ';
   color: #fff;
-  background: rgba(0, 0, 0, 0.9);
+  background: $movieBg;
   padding: 20px;
+  margin: 0px 20px;
   border-radius: 20px;
+  overflow: hidden;
+  &__title {
+    color: #fff;
+    grid-area: title;
+  }
+  &__main {
+    grid-area: main;
+    min-width: 300px;
+    figure {
+      border: 2px solid $bg;
+    }
+    article {
+      margin-top: 40px;
+    }
+  }
+  &__info {
+    min-width: 300px;
+    position: relative;
+  }
+  &__recommendations {
+    background: $movieRecommendationsBg;
+    border-radius: 4px;
+    grid-area: recommended;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 120vh;
+    min-width: 300px;
+    margin-right: -37px;
+    .title {
+      color: #fff;
+    }
+  }
+  &__recommendations:not(:first-child) > * {
+    margin: 20px 0px;
+  }
+  &__list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
 }
 
-.movie__recommendations {
-  overflow-y: scroll;
-  height: 150vh;
+.list__item-genres > *,
+.list__item-prod > * {
+  margin: 1px 2px;
+  transition: all 0.3s ease;
 }
 
-//------//
-
-.movie__list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+.list__item-prod > *:hover {
+  cursor: pointer;
+  color: $blue-invert;
+  background: $blue;
+  text-decoration: none !important;
 }
 
-.movie__recommendations {
-  display: flex;
-  flex-direction: column;
-  width: 250px;
-}
-//----//
-.nav__links {
-  justify-content: space-around;
-}
-
-.form {
-  flex: 1;
-}
-
-.movieCard {
-  background: rgba(0, 0, 0, 0.9);
-  padding: 3px;
-}
-
-.movieCard__info__title {
-  height: 75px;
-  margin-top: 10px;
-  background: -webkit-linear-gradient(60deg, #ff0000, #ffff00);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.movieCard__info__genres {
-  width: 220px;
-  flex-wrap: wrap;
-}
-
-.movieCard__info__genres > * {
-  margin: 3px;
-}
-
-.btn-favorite {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  :hover {
+.list__item-homepage a {
+  color: $footer;
+  word-break: break-word;
+  &hover {
     cursor: pointer;
   }
 }
 
-.card-image:after {
-  content: '';
-  display: block;
-  height: 1px;
-  width: 100%;
-  background: rgba(39, 36, 47, 0.1);
+.movieCard {
+  background: $movieBg;
+  padding: 3px;
+  transform: rotateX(14deg) rotateY(18deg) rotateZ(1deg);
+  perspective: 600px;
+  transform-origin: right center;
+  transition: 0.3s ease;
+  &:hover {
+    transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    perspective: 0px;
+  }
+  &__info-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 82px;
+    background: -webkit-linear-gradient(60deg, #ff0000, #ffff00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  &__info-bottom {
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__info-genres {
+    width: 180px;
+    flex-wrap: wrap;
+  }
+  &__info-genres > * {
+    margin: 3px;
+  }
+  &__btn-genres {
+    background: $blue;
+    color: $blue-invert;
+    transition: all 0.3s ease;
+  }
+  &__btn-genres:hover {
+    background: $dark-blue;
+    color: $dark-blue-invert;
+  }
+}
+
+.btn-favorite {
+  padding-right: 25px;
+  & .fa-trash-alt {
+    color: $trash;
+    transition: all 0.3s ease;
+  }
+  & .fa-trash-alt:hover {
+    color: $trash-hover;
+    cursor: pointer;
+  }
+  & .fa-heart {
+    color: $heart;
+    transition: all 0.3s ease;
+  }
+  & .fa-heart:hover {
+    color: $heart-hover;
+    cursor: pointer;
+  }
 }
 
 .hero {
-  background-color: cornflowerblue;
-  margin-left: -70px;
-  margin-right: -70px;
+  background-color: $dark-purple;
+  color: $dark-purple-invert;
   margin-top: 25px;
+  margin-left: -64px;
+  margin-right: -64px;
   padding: 20px 0px;
 }
 
-.pagination-previous:hover,
-.pagination-next:hover {
-  cursor: pointer;
+.btn-pagination {
+  & .pagination-link {
+    background: $blue;
+    color: $blue-invert;
+    transition: all 0.3s ease;
+  }
+  & .pagination-link.is-current {
+    background: $black;
+  }
+  & .pagination-link:hover {
+    background: $dark-blue;
+    color: $dark-blue-invert;
+  }
+  & .btn-pagination-prev,
+  & .btn-pagination-next {
+    background: $blue;
+    color: $blue-invert;
+    transition: all 0.3s ease;
+  }
+  & .btn-pagination-prev:hover,
+  & .btn-pagination-next:hover {
+    background: $dark-blue;
+    color: $dark-blue-invert;
+  }
 }
 
-.buttons {
-  padding: 20px;
-}
-
-.loading {
+.not-found {
+  width: 100%;
   height: 85vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  &__title {
+    color: white;
+    font-size: 2rem;
+    text-transform: uppercase;
+  }
+}
+
+//////////////////////////////
+//      MEDIA QUERIES       //
+/////////////////////////////
+
+@media (max-width: 1215px) and (min-width: 1088px) {
+  .container.is-fluid {
+    margin-left: 40px;
+  }
+}
+
+@media (max-width: 1087px) {
+  .main {
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 30px 15px;
+  }
+
+  .movie {
+    grid-template-areas:
+      'title title title'
+      'main main info'
+      'recommended recommended recommended';
+    position: relative;
+    &__recommendations {
+      display: flex;
+      overflow-x: scroll;
+      height: auto;
+      & h5 {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        font-size: 36px !important;
+        margin: 0;
+        line-height: 5rem;
+        word-break: normal;
+      }
+    }
+  }
+
+  .hero {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .btn-pagination {
+    padding: 0px 30px;
+  }
+}
+
+@media (max-width: 769px) {
+  .nav {
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0px 20px;
+    & .level-item {
+      margin-bottom: 0;
+    }
+    &__link {
+      order: 1;
+      flex: 1;
+      justify-content: flex-start;
+    }
+    &__form {
+      order: 3;
+      flex: 0 0 100%;
+      padding: 20px 0px 0px 0px;
+    }
+    &__links {
+      order: 2;
+      flex: 1;
+      justify-content: flex-end;
+    }
+    &__link-fav {
+      margin-right: 20px;
+    }
+  }
+
+  .movie {
+    &__info {
+      min-width: 260px;
+    }
+    &__recommendations {
+      height: 460px;
+      &:not(:first-child) > * {
+        margin: 20px 10px;
+      }
+      & .card {
+        height: 430px;
+        & .card-image {
+          height: 270px;
+        }
+        & img {
+          height: 270px;
+        }
+        & .title {
+          height: auto;
+        }
+        & figure {
+          padding-top: 270px;
+        }
+      }
+    }
+  }
+
+  .main {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+  }
+
+  .movieCard {
+    & .card-image {
+      height: 380px;
+    }
+    & .is-4by5 {
+      padding-top: 380px;
+    }
+    & img {
+      height: 380px;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .main {
+    grid-template-columns: 1fr;
+    grid-gap: 50px;
+  }
+
+  .movieCard {
+    width: 310px;
+    margin: 0 auto;
+  }
+
+  .movie {
+    grid-template-areas: 'title' 'main' 'info' 'recommended';
+    padding: 0px 25px;
+    &__title {
+      min-width: 240px;
+      width: 100%;
+      padding-top: 20px;
+    }
+    &__main {
+      margin: 0 auto;
+      max-width: 390px;
+      width: 100%;
+      &-poster {
+        height: 300px;
+      }
+      & .btn-favorite {
+        position: absolute;
+        bottom: 10px;
+        right: 0px;
+      }
+    }
+    &__info {
+      margin: 0 auto;
+      max-width: 390px;
+      width: 100%;
+    }
+    &__recommendations {
+      margin-left: -30px;
+      & h5 {
+        font-size: 22px !important;
+        line-height: 2rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .nav {
+    &__link {
+      flex: 1 1 100%;
+      justify-content: center;
+      & a {
+        width: 100%;
+      }
+    }
+    &__links {
+      flex: 1 1 100%;
+      justify-content: space-between;
+      margin-top: 20px;
+      & a {
+        width: 50%;
+      }
+    }
+  }
+
+  .movieCard {
+    width: 290px;
+  }
+
+  .movie {
+    padding: 0;
+    &__title {
+      width: 90%;
+      margin: 10px auto;
+    }
+    &__main {
+      & article {
+        width: 90%;
+        margin: 20px auto;
+      }
+      & .image {
+        width: 90%;
+        margin: 0 auto;
+      }
+    }
+    &__info {
+      width: 90%;
+      margin: 0 auto;
+      & .movie__list {
+        line-height: 2rem;
+      }
+    }
+    &__recommendations {
+      margin-left: -10px;
+    }
+  }
 }
